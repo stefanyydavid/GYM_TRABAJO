@@ -1,31 +1,7 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 04-09-2026 a las 03:26:42
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `db_gym`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asistencias`
---
 
 CREATE TABLE `asistencias` (
   `id_asistencia` int(10) UNSIGNED NOT NULL,
@@ -37,9 +13,6 @@ CREATE TABLE `asistencias` (
   `registrado_por` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `asistencias`
---
 
 INSERT INTO `asistencias` (`id_asistencia`, `id_cliente`, `id_membresia`, `id_sede`, `fecha_hora_entrada`, `fecha_hora_salida`, `registrado_por`) VALUES
 (1, 20, 20, 3, '2025-05-31 13:32:00', '2025-05-31 15:19:00', 3),
@@ -127,11 +100,6 @@ INSERT INTO `asistencias` (`id_asistencia`, `id_cliente`, `id_membresia`, `id_se
 (83, 26, 26, 3, '2025-02-02 17:49:00', '2025-02-02 19:17:00', 2),
 (84, 10, 10, 2, '2025-01-23 18:12:00', '2025-01-23 18:47:00', 3);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `auditoria`
---
 
 CREATE TABLE `auditoria` (
   `id_auditoria` int(10) UNSIGNED NOT NULL,
@@ -147,9 +115,6 @@ CREATE TABLE `auditoria` (
   `fecha` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `auditoria`
---
 
 INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `tabla_afectada`, `id_registro`, `descripcion`, `datos_anteriores`, `datos_nuevos`, `ip`, `user_agent`, `fecha`) VALUES
 (1, 5, 'LOGIN', 'pagos', 7, 'El usuario realizó la acción LOGIN sobre la tabla pagos', NULL, NULL, '192.168.1.209', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0', '2025-02-27 16:00:00'),
@@ -185,11 +150,6 @@ INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `tabla_afectada
 (31, 2, 'OTRA', 'clientes', 13, 'El usuario realizó la acción OTRA sobre la tabla clientes', NULL, NULL, '192.168.1.114', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0', '2025-04-30 12:00:00'),
 (32, 1, 'UPDATE', 'asistencias', 10, 'El usuario realizó la acción UPDATE sobre la tabla asistencias', '{\"estado\": \"ACTIVO\"}', '{\"estado\": \"INACTIVO\"}', '192.168.1.61', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0', '2025-10-22 16:00:00');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `clases`
---
 
 CREATE TABLE `clases` (
   `id_clase` int(10) UNSIGNED NOT NULL,
@@ -199,9 +159,6 @@ CREATE TABLE `clases` (
   `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `clases`
---
 
 INSERT INTO `clases` (`id_clase`, `nombre`, `descripcion`, `capacidad`, `activo`) VALUES
 (1, 'Spinning', 'Clase de ciclismo indoor de alta intensidad', 20, 1),
@@ -213,11 +170,7 @@ INSERT INTO `clases` (`id_clase`, `nombre`, `descripcion`, `capacidad`, `activo`
 (7, 'Boxeo', 'Clase de técnica y acondicionamiento con boxeo', 16, 1),
 (8, 'Stretching', 'Clase de estiramiento y movilidad articular', 20, 1);
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `clientes`
---
 
 CREATE TABLE `clientes` (
   `id_cliente` int(10) UNSIGNED NOT NULL,
@@ -236,9 +189,6 @@ CREATE TABLE `clientes` (
   `observaciones` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `clientes`
---
 
 INSERT INTO `clientes` (`id_cliente`, `tipo_documento`, `documento`, `nombres`, `apellidos`, `fecha_nacimiento`, `sexo`, `telefono`, `email`, `direccion`, `ciudad`, `fecha_registro`, `estado`, `observaciones`) VALUES
 (1, 'CC', 'C97971488', 'Fernando', 'Suárez Vargas', '1986-05-29', 'M', '3128698256', 'fernando.suarez1@example.com', 'Calle 36 # 32-96', 'Bucaramanga', '2024-06-22', 'ACTIVO', NULL),
@@ -272,11 +222,7 @@ INSERT INTO `clientes` (`id_cliente`, `tipo_documento`, `documento`, `nombres`, 
 (29, 'TI', 'C33357554', 'Paula', 'Aguilar Herrera', '1998-03-20', 'F', '3186049101', 'paula.aguilar29@example.com', 'Calle 1 # 39-37', 'Ibagué', '2024-03-06', 'ACTIVO', NULL),
 (30, 'CC', 'C72409658', 'Fernando', 'Cáceres Suárez', '2002-12-06', 'M', '3144585314', 'fernando.caceres30@example.com', 'Calle 44 # 85-11', 'Manizales', '2024-08-04', 'ACTIVO', NULL);
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `configuracion`
---
 
 CREATE TABLE `configuracion` (
   `id_configuracion` int(10) UNSIGNED NOT NULL,
@@ -285,9 +231,7 @@ CREATE TABLE `configuracion` (
   `descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `configuracion`
---
+
 
 INSERT INTO `configuracion` (`id_configuracion`, `clave`, `valor`, `descripcion`) VALUES
 (1, 'nombre_gimnasio', 'GymClaude Fitness Center', 'Nombre comercial del gimnasio'),
@@ -301,11 +245,7 @@ INSERT INTO `configuracion` (`id_configuracion`, `clave`, `valor`, `descripcion`
 (9, 'max_reservas_por_cliente', '5', 'Máximo de reservas activas por cliente'),
 (10, 'version_sistema', '1.0.0', 'Versión actual del sistema de gestión');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `contactos_emergencia`
---
 
 CREATE TABLE `contactos_emergencia` (
   `id_contacto` int(10) UNSIGNED NOT NULL,
@@ -316,9 +256,6 @@ CREATE TABLE `contactos_emergencia` (
   `email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `contactos_emergencia`
---
 
 INSERT INTO `contactos_emergencia` (`id_contacto`, `id_cliente`, `nombre`, `parentesco`, `telefono`, `email`) VALUES
 (1, 21, 'Esteban Rodríguez Guerrero', 'Amigo/a', '3205859883', NULL),
@@ -347,11 +284,7 @@ INSERT INTO `contactos_emergencia` (`id_contacto`, `id_cliente`, `nombre`, `pare
 (24, 7, 'Catalina Moreno Morales', 'Padre', '3199123194', NULL),
 (25, 28, 'Camilo Castro Romero', 'Amigo/a', '3245848684', 'camilo.castro25@example.com');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `devoluciones`
---
 
 CREATE TABLE `devoluciones` (
   `id_devolucion` int(10) UNSIGNED NOT NULL,
@@ -365,9 +298,7 @@ CREATE TABLE `devoluciones` (
   `procesado_por` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `devoluciones`
---
+
 
 INSERT INTO `devoluciones` (`id_devolucion`, `id_pago`, `id_cliente`, `monto`, `motivo`, `estado`, `fecha_solicitud`, `fecha_procesada`, `procesado_por`) VALUES
 (1, 16, 16, 250000.00, 'Error en el cobro', 'RECHAZADA', '2024-03-15 15:00:00', '2024-03-16 15:00:00', 1),
@@ -376,11 +307,7 @@ INSERT INTO `devoluciones` (`id_devolucion`, `id_pago`, `id_cliente`, `monto`, `
 (4, 25, 25, 425000.00, 'Insatisfacción con el servicio', 'RECHAZADA', '2025-02-17 10:00:00', '2025-02-22 10:00:00', 1),
 (5, 10, 10, 160000.00, 'Error en el cobro', 'PROCESADA', '2024-03-31 12:00:00', '2024-04-05 12:00:00', 4);
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `ejercicios`
---
 
 CREATE TABLE `ejercicios` (
   `id_ejercicio` int(10) UNSIGNED NOT NULL,
@@ -391,9 +318,6 @@ CREATE TABLE `ejercicios` (
   `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `ejercicios`
---
 
 INSERT INTO `ejercicios` (`id_ejercicio`, `nombre`, `grupo_muscular`, `descripcion`, `instrucciones`, `activo`) VALUES
 (1, 'Press de banca plano', 'Pecho', 'Ejercicio con barra para pectoral mayor', 'Realizar press de banca plano manteniendo la técnica correcta, controlando el movimiento y respirando adecuadamente.', 1),
@@ -427,11 +351,7 @@ INSERT INTO `ejercicios` (`id_ejercicio`, `nombre`, `grupo_muscular`, `descripci
 (29, 'Patada de glúteo en polea', 'Gluteos', 'Aislamiento de glúteos', 'Realizar patada de glúteo en polea manteniendo la técnica correcta, controlando el movimiento y respirando adecuadamente.', 1),
 (30, 'Cinta de correr', 'Cardio', 'Ejercicio cardiovascular de bajo impacto', 'Realizar cinta de correr manteniendo la técnica correcta, controlando el movimiento y respirando adecuadamente.', 1);
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `entrenadores`
---
 
 CREATE TABLE `entrenadores` (
   `id_entrenador` int(10) UNSIGNED NOT NULL,
@@ -445,9 +365,6 @@ CREATE TABLE `entrenadores` (
   `estado` enum('ACTIVO','INACTIVO') NOT NULL DEFAULT 'ACTIVO'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `entrenadores`
---
 
 INSERT INTO `entrenadores` (`id_entrenador`, `nombres`, `apellidos`, `documento`, `telefono`, `email`, `especialidad`, `fecha_contratacion`, `estado`) VALUES
 (1, 'Alejandro', 'Martínez Rodríguez', 'E22575562', '3124672546', 'alejandro.martinez@gymclaude.com', 'Musculación', '2022-04-22', 'ACTIVO'),
@@ -459,11 +376,6 @@ INSERT INTO `entrenadores` (`id_entrenador`, `nombres`, `apellidos`, `documento`
 (7, 'Angélica', 'Muñoz Contreras', 'E35808537', '3157283015', 'angelica.munoz@gymclaude.com', 'Entrenamiento de fuerza', '2021-05-23', 'ACTIVO'),
 (8, 'Jorge', 'Álvarez Pérez', 'E41244663', '3116778091', 'jorge.alvarez@gymclaude.com', 'Acondicionamiento físico', '2023-02-18', 'ACTIVO');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `historial_membresias`
---
 
 CREATE TABLE `historial_membresias` (
   `id_historial` int(10) UNSIGNED NOT NULL,
@@ -475,9 +387,6 @@ CREATE TABLE `historial_membresias` (
   `fecha_cambio` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `historial_membresias`
---
 
 INSERT INTO `historial_membresias` (`id_historial`, `id_membresia`, `estado_anterior`, `estado_nuevo`, `motivo`, `cambiado_por`, `fecha_cambio`) VALUES
 (1, 1, 'PENDIENTE', 'ACTIVA', 'Activación de membresía tras confirmación de pago', 4, '2024-08-12 00:00:00'),
@@ -523,11 +432,7 @@ INSERT INTO `historial_membresias` (`id_historial`, `id_membresia`, `estado_ante
 (41, 29, 'ACTIVA', 'VENCIDA', 'Vencimiento por finalización del periodo contratado', 2, '2025-01-05 00:00:00'),
 (42, 30, 'PENDIENTE', 'ACTIVA', 'Activación de membresía tras confirmación de pago', 4, '2025-03-07 00:00:00');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `horarios_clases`
---
 
 CREATE TABLE `horarios_clases` (
   `id_horario` int(10) UNSIGNED NOT NULL,
@@ -540,9 +445,7 @@ CREATE TABLE `horarios_clases` (
   `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `horarios_clases`
---
+
 
 INSERT INTO `horarios_clases` (`id_horario`, `id_clase`, `id_entrenador`, `id_sede`, `dia_semana`, `hora_inicio`, `hora_fin`, `activo`) VALUES
 (1, 1, 4, 1, 'LUNES', '07:00:00', '08:00:00', 1),
@@ -561,11 +464,7 @@ INSERT INTO `horarios_clases` (`id_horario`, `id_clase`, `id_entrenador`, `id_se
 (14, 5, 2, 1, 'DOMINGO', '08:00:00', '09:00:00', 1),
 (15, 4, 6, 1, 'LUNES', '08:00:00', '09:00:00', 1);
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `incidencias`
---
 
 CREATE TABLE `incidencias` (
   `id_incidencia` int(10) UNSIGNED NOT NULL,
@@ -583,9 +482,6 @@ CREATE TABLE `incidencias` (
   `solucion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `incidencias`
---
 
 INSERT INTO `incidencias` (`id_incidencia`, `id_cliente`, `tipo`, `severidad`, `modulo`, `descripcion`, `mensaje_error`, `datos_contexto`, `estado`, `fecha_creacion`, `fecha_actualizacion`, `resuelto_por`, `solucion`) VALUES
 (1, 25, 'OTRO', 'ALTA', 'Membresías', 'Incidencia reportada en el módulo de membresías', NULL, '{\"origen\": \"web\"}', 'EN_REVISION', '2025-06-04 00:00:00', NULL, NULL, NULL),
@@ -600,11 +496,6 @@ INSERT INTO `incidencias` (`id_incidencia`, `id_cliente`, `tipo`, `severidad`, `
 (10, 7, 'OTRO', 'BAJA', 'Autenticación', 'Incidencia reportada en el módulo de autenticación', NULL, '{\"origen\": \"web\"}', 'EN_REVISION', '2025-09-03 00:00:00', NULL, NULL, NULL),
 (11, 23, 'ERROR_USUARIO', 'CRITICA', 'Membresías', 'Incidencia reportada en el módulo de membresías', NULL, '{\"origen\": \"web\"}', 'RESUELTA', '2025-10-10 00:00:00', '2025-10-15 00:00:00', 4, 'Se corrigió el inconveniente y se notificó al cliente');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `membresias`
---
 
 CREATE TABLE `membresias` (
   `id_membresia` int(10) UNSIGNED NOT NULL,
@@ -620,9 +511,6 @@ CREATE TABLE `membresias` (
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `membresias`
---
 
 INSERT INTO `membresias` (`id_membresia`, `id_cliente`, `id_plan`, `id_sede`, `fecha_inicio`, `fecha_fin`, `estado`, `precio_final`, `descuento`, `observaciones`, `fecha_creacion`) VALUES
 (1, 1, 1, 2, '2024-08-12', '2024-09-11', 'ACTIVA', 70000.00, 0.00, NULL, '2024-08-12 00:00:00'),
@@ -656,11 +544,7 @@ INSERT INTO `membresias` (`id_membresia`, `id_cliente`, `id_plan`, `id_sede`, `f
 (29, 29, 2, 2, '2024-11-30', '2024-12-30', 'VENCIDA', 95000.00, 0.00, NULL, '2024-11-30 00:00:00'),
 (30, 30, 4, 2, '2025-03-07', '2025-06-05', 'ACTIVA', 250000.00, 0.00, NULL, '2025-03-07 00:00:00');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `metodos_pago`
---
 
 CREATE TABLE `metodos_pago` (
   `id_metodo_pago` int(10) UNSIGNED NOT NULL,
@@ -668,9 +552,6 @@ CREATE TABLE `metodos_pago` (
   `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `metodos_pago`
---
 
 INSERT INTO `metodos_pago` (`id_metodo_pago`, `nombre`, `activo`) VALUES
 (1, 'Efectivo', 1),
@@ -680,11 +561,6 @@ INSERT INTO `metodos_pago` (`id_metodo_pago`, `nombre`, `activo`) VALUES
 (5, 'Nequi', 1),
 (6, 'Daviplata', 1);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pagos`
---
 
 CREATE TABLE `pagos` (
   `id_pago` int(10) UNSIGNED NOT NULL,
@@ -700,9 +576,6 @@ CREATE TABLE `pagos` (
   `observaciones` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `pagos`
---
 
 INSERT INTO `pagos` (`id_pago`, `id_cliente`, `id_membresia`, `id_metodo_pago`, `id_sede`, `monto`, `fecha_pago`, `referencia`, `estado`, `registrado_por`, `observaciones`) VALUES
 (1, 1, 1, 2, 2, 70000.00, '2024-08-12 12:00:00', 'REF-2024-00001', 'APROBADO', 2, NULL),
@@ -748,11 +621,7 @@ INSERT INTO `pagos` (`id_pago`, `id_cliente`, `id_membresia`, `id_metodo_pago`, 
 (41, 23, NULL, 1, 2, 20000.00, '2024-11-25 17:00:00', 'REF-2024-00041', 'APROBADO', 1, 'Pago de servicio adicional'),
 (42, 5, NULL, 5, 2, 95000.00, '2025-07-15 19:00:00', 'REF-2025-00042', 'PENDIENTE', 2, 'Pago de servicio adicional');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `planes`
---
 
 CREATE TABLE `planes` (
   `id_plan` int(10) UNSIGNED NOT NULL,
@@ -766,9 +635,7 @@ CREATE TABLE `planes` (
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `planes`
---
+
 
 INSERT INTO `planes` (`id_plan`, `nombre`, `descripcion`, `duracion_dias`, `precio`, `limite_ingresos`, `incluye_entrenador`, `activo`, `fecha_creacion`) VALUES
 (1, 'Plan Básico', 'Acceso a salas de máquinas y pesas', 30, 70000.00, NULL, 0, 1, '2022-01-15 09:00:00'),
@@ -777,11 +644,6 @@ INSERT INTO `planes` (`id_plan`, `nombre`, `descripcion`, `duracion_dias`, `prec
 (4, 'Plan Trimestral', 'Acceso completo por 90 días con descuento', 90, 250000.00, NULL, 0, 1, '2022-02-01 09:00:00'),
 (5, 'Plan Anual', 'Acceso completo por 365 días, mejor precio', 365, 850000.00, NULL, 1, 1, '2022-03-01 09:00:00');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `reservas_clases`
---
 
 CREATE TABLE `reservas_clases` (
   `id_reserva` int(10) UNSIGNED NOT NULL,
@@ -792,9 +654,7 @@ CREATE TABLE `reservas_clases` (
   `fecha_reserva` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `reservas_clases`
---
+
 
 INSERT INTO `reservas_clases` (`id_reserva`, `id_horario`, `id_cliente`, `fecha_clase`, `estado`, `fecha_reserva`) VALUES
 (1, 15, 10, '2025-09-21', 'NO_ASISTIO', '2025-09-16 00:00:00'),
@@ -840,11 +700,7 @@ INSERT INTO `reservas_clases` (`id_reserva`, `id_horario`, `id_cliente`, `fecha_
 (41, 15, 23, '2025-04-26', 'ASISTIO', '2025-04-21 00:00:00'),
 (42, 15, 10, '2025-02-10', 'ASISTIO', '2025-02-08 00:00:00');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `roles`
---
 
 CREATE TABLE `roles` (
   `id_rol` int(10) UNSIGNED NOT NULL,
@@ -852,9 +708,7 @@ CREATE TABLE `roles` (
   `descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `roles`
---
+
 
 INSERT INTO `roles` (`id_rol`, `nombre`, `descripcion`) VALUES
 (1, 'Administrador', 'Acceso total al sistema y configuración general'),
@@ -862,11 +716,7 @@ INSERT INTO `roles` (`id_rol`, `nombre`, `descripcion`) VALUES
 (3, 'Entrenador', 'Gestión de rutinas y clases asignadas'),
 (4, 'Supervisor', 'Supervisión de sedes, reportes e incidencias');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `rutinas`
---
 
 CREATE TABLE `rutinas` (
   `id_rutina` int(10) UNSIGNED NOT NULL,
@@ -879,9 +729,6 @@ CREATE TABLE `rutinas` (
   `estado` enum('ACTIVA','FINALIZADA','CANCELADA') NOT NULL DEFAULT 'ACTIVA'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `rutinas`
---
 
 INSERT INTO `rutinas` (`id_rutina`, `id_cliente`, `id_entrenador`, `nombre`, `objetivo`, `fecha_inicio`, `fecha_fin`, `estado`) VALUES
 (1, 27, 1, 'Rutina Definición #1', 'Mejorar resistencia', '2024-09-01', NULL, 'ACTIVA'),
@@ -900,11 +747,6 @@ INSERT INTO `rutinas` (`id_rutina`, `id_cliente`, `id_entrenador`, `nombre`, `ob
 (14, 22, 8, 'Rutina Cardio #14', 'Mejorar resistencia', '2025-05-14', NULL, 'ACTIVA'),
 (15, 7, 6, 'Rutina Cardio #15', 'Preparación física general', '2024-10-13', '2025-01-22', 'FINALIZADA');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `rutina_ejercicios`
---
 
 CREATE TABLE `rutina_ejercicios` (
   `id_rutina_ejercicio` int(10) UNSIGNED NOT NULL,
@@ -917,10 +759,6 @@ CREATE TABLE `rutina_ejercicios` (
   `orden` int(11) NOT NULL,
   `observaciones` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `rutina_ejercicios`
---
 
 INSERT INTO `rutina_ejercicios` (`id_rutina_ejercicio`, `id_rutina`, `id_ejercicio`, `series`, `repeticiones`, `peso`, `descanso_segundos`, `orden`, `observaciones`) VALUES
 (1, 1, 1, 4, 8, 10.00, 45, 1, NULL),
@@ -984,11 +822,7 @@ INSERT INTO `rutina_ejercicios` (`id_rutina_ejercicio`, `id_rutina`, `id_ejercic
 (59, 15, 22, 4, 12, 40.00, 45, 3, NULL),
 (60, 15, 25, 5, 12, 60.00, 60, 4, NULL);
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `sedes`
---
 
 CREATE TABLE `sedes` (
   `id_sede` int(10) UNSIGNED NOT NULL,
@@ -1000,20 +834,13 @@ CREATE TABLE `sedes` (
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `sedes`
---
+
 
 INSERT INTO `sedes` (`id_sede`, `nombre`, `direccion`, `telefono`, `email`, `activo`, `fecha_creacion`) VALUES
 (1, 'Sede Chapinero', 'Calle 63 # 11-24, Bogotá', '6013456789', 'chapinero@gymclaude.com', 1, '2022-01-10 08:00:00'),
 (2, 'Sede Poblado', 'Carrera 43A # 10-15, Medellín', '6044567890', 'poblado@gymclaude.com', 1, '2022-03-15 08:00:00'),
 (3, 'Sede Norte', 'Avenida 6N # 28-40, Cali', '6025678901', 'norte@gymclaude.com', 1, '2023-02-20 08:00:00');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios_internos`
---
 
 CREATE TABLE `usuarios_internos` (
   `id_usuario` int(10) UNSIGNED NOT NULL,
@@ -1028,9 +855,7 @@ CREATE TABLE `usuarios_internos` (
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `usuarios_internos`
---
+
 
 INSERT INTO `usuarios_internos` (`id_usuario`, `nombres`, `apellidos`, `username`, `password_hash`, `email`, `cargo`, `estado`, `ultimo_acceso`, `fecha_creacion`) VALUES
 (1, 'Andrea', 'Salazar Pinto', 'asalazar', '$2y$10$hashficticio01abcdefghijklmnopqrstuv', 'andrea.salazar@gymclaude.com', 'Administrador General', 'ACTIVO', '2025-02-27 00:00:00', '2023-10-17 00:00:00'),
@@ -1039,20 +864,14 @@ INSERT INTO `usuarios_internos` (`id_usuario`, `nombres`, `apellidos`, `username
 (4, 'Esteban', 'Morales Vega', 'emorales', '$2y$10$hashficticio04abcdefghijklmnopqrstuv', 'esteban.morales@gymclaude.com', 'Supervisor de Sedes', 'ACTIVO', '2025-02-22 00:00:00', '2022-05-23 00:00:00'),
 (5, 'Tatiana', 'Reyes Ortiz', 'treyes', '$2y$10$hashficticio05abcdefghijklmnopqrstuv', 'tatiana.reyes@gymclaude.com', 'Analista de Sistemas', 'ACTIVO', '2025-10-07 00:00:00', '2023-11-24 00:00:00');
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `usuarios_roles`
---
 
 CREATE TABLE `usuarios_roles` (
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `id_rol` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `usuarios_roles`
---
+
 
 INSERT INTO `usuarios_roles` (`id_usuario`, `id_rol`) VALUES
 (1, 1),
@@ -1062,13 +881,7 @@ INSERT INTO `usuarios_roles` (`id_usuario`, `id_rol`) VALUES
 (4, 4),
 (5, 1);
 
---
--- Índices para tablas volcadas
---
 
---
--- Indices de la tabla `asistencias`
---
 ALTER TABLE `asistencias`
   ADD PRIMARY KEY (`id_asistencia`),
   ADD KEY `fk_asistencias_cliente` (`id_cliente`),
@@ -1076,108 +889,78 @@ ALTER TABLE `asistencias`
   ADD KEY `fk_asistencias_sede` (`id_sede`),
   ADD KEY `fk_asistencias_usuario` (`registrado_por`);
 
---
--- Indices de la tabla `auditoria`
---
+
 ALTER TABLE `auditoria`
   ADD PRIMARY KEY (`id_auditoria`),
   ADD KEY `fk_auditoria_usuario` (`id_usuario`);
 
---
--- Indices de la tabla `clases`
---
+
 ALTER TABLE `clases`
   ADD PRIMARY KEY (`id_clase`);
 
---
--- Indices de la tabla `clientes`
---
+
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id_cliente`),
   ADD UNIQUE KEY `documento` (`documento`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- Indices de la tabla `configuracion`
---
+
 ALTER TABLE `configuracion`
   ADD PRIMARY KEY (`id_configuracion`),
   ADD UNIQUE KEY `clave` (`clave`);
 
---
--- Indices de la tabla `contactos_emergencia`
---
+
 ALTER TABLE `contactos_emergencia`
   ADD PRIMARY KEY (`id_contacto`),
   ADD KEY `fk_contactos_cliente` (`id_cliente`);
 
---
--- Indices de la tabla `devoluciones`
---
+
 ALTER TABLE `devoluciones`
   ADD PRIMARY KEY (`id_devolucion`),
   ADD KEY `fk_dev_pago` (`id_pago`),
   ADD KEY `fk_dev_cliente` (`id_cliente`),
   ADD KEY `fk_dev_usuario` (`procesado_por`);
 
---
--- Indices de la tabla `ejercicios`
---
+
 ALTER TABLE `ejercicios`
   ADD PRIMARY KEY (`id_ejercicio`);
 
---
--- Indices de la tabla `entrenadores`
---
+
 ALTER TABLE `entrenadores`
   ADD PRIMARY KEY (`id_entrenador`),
   ADD UNIQUE KEY `documento` (`documento`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- Indices de la tabla `historial_membresias`
---
 ALTER TABLE `historial_membresias`
   ADD PRIMARY KEY (`id_historial`),
   ADD KEY `fk_hm_membresia` (`id_membresia`),
   ADD KEY `fk_hm_usuario` (`cambiado_por`);
 
---
--- Indices de la tabla `horarios_clases`
---
+
 ALTER TABLE `horarios_clases`
   ADD PRIMARY KEY (`id_horario`),
   ADD KEY `fk_horarios_clase` (`id_clase`),
   ADD KEY `fk_horarios_entrenador` (`id_entrenador`),
   ADD KEY `fk_horarios_sede` (`id_sede`);
 
---
--- Indices de la tabla `incidencias`
---
+
 ALTER TABLE `incidencias`
   ADD PRIMARY KEY (`id_incidencia`),
   ADD KEY `fk_inc_cliente` (`id_cliente`),
   ADD KEY `fk_inc_usuario` (`resuelto_por`);
 
---
--- Indices de la tabla `membresias`
---
 ALTER TABLE `membresias`
   ADD PRIMARY KEY (`id_membresia`),
   ADD KEY `fk_membresias_cliente` (`id_cliente`),
   ADD KEY `fk_membresias_plan` (`id_plan`),
   ADD KEY `fk_membresias_sede` (`id_sede`);
 
---
--- Indices de la tabla `metodos_pago`
---
+
 ALTER TABLE `metodos_pago`
   ADD PRIMARY KEY (`id_metodo_pago`),
   ADD UNIQUE KEY `nombre` (`nombre`);
 
---
--- Indices de la tabla `pagos`
---
+
 ALTER TABLE `pagos`
   ADD PRIMARY KEY (`id_pago`),
   ADD KEY `fk_pagos_cliente` (`id_cliente`),
@@ -1186,266 +969,172 @@ ALTER TABLE `pagos`
   ADD KEY `fk_pagos_sede` (`id_sede`),
   ADD KEY `fk_pagos_usuario` (`registrado_por`);
 
---
--- Indices de la tabla `planes`
---
+
 ALTER TABLE `planes`
   ADD PRIMARY KEY (`id_plan`);
 
---
--- Indices de la tabla `reservas_clases`
---
+
 ALTER TABLE `reservas_clases`
   ADD PRIMARY KEY (`id_reserva`),
   ADD KEY `fk_reservas_horario` (`id_horario`),
   ADD KEY `fk_reservas_cliente` (`id_cliente`);
 
---
--- Indices de la tabla `roles`
---
+
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`),
   ADD UNIQUE KEY `nombre` (`nombre`);
 
---
--- Indices de la tabla `rutinas`
---
+
 ALTER TABLE `rutinas`
   ADD PRIMARY KEY (`id_rutina`),
   ADD KEY `fk_rutinas_cliente` (`id_cliente`),
   ADD KEY `fk_rutinas_entrenador` (`id_entrenador`);
 
---
--- Indices de la tabla `rutina_ejercicios`
---
+
 ALTER TABLE `rutina_ejercicios`
   ADD PRIMARY KEY (`id_rutina_ejercicio`),
   ADD KEY `fk_re_rutina` (`id_rutina`),
   ADD KEY `fk_re_ejercicio` (`id_ejercicio`);
 
---
--- Indices de la tabla `sedes`
---
+
 ALTER TABLE `sedes`
   ADD PRIMARY KEY (`id_sede`);
 
---
--- Indices de la tabla `usuarios_internos`
---
+
 ALTER TABLE `usuarios_internos`
   ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- Indices de la tabla `usuarios_roles`
---
+
 ALTER TABLE `usuarios_roles`
   ADD PRIMARY KEY (`id_usuario`,`id_rol`),
   ADD KEY `fk_ur_rol` (`id_rol`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
 
---
--- AUTO_INCREMENT de la tabla `asistencias`
---
 ALTER TABLE `asistencias`
   MODIFY `id_asistencia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
---
--- AUTO_INCREMENT de la tabla `auditoria`
---
+
 ALTER TABLE `auditoria`
   MODIFY `id_auditoria` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
---
--- AUTO_INCREMENT de la tabla `clases`
---
+
 ALTER TABLE `clases`
   MODIFY `id_clase` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
--- AUTO_INCREMENT de la tabla `clientes`
---
+
 ALTER TABLE `clientes`
   MODIFY `id_cliente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
---
--- AUTO_INCREMENT de la tabla `configuracion`
---
+
 ALTER TABLE `configuracion`
   MODIFY `id_configuracion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
---
--- AUTO_INCREMENT de la tabla `contactos_emergencia`
---
+
 ALTER TABLE `contactos_emergencia`
   MODIFY `id_contacto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
---
--- AUTO_INCREMENT de la tabla `devoluciones`
---
+
 ALTER TABLE `devoluciones`
   MODIFY `id_devolucion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT de la tabla `ejercicios`
---
+
 ALTER TABLE `ejercicios`
   MODIFY `id_ejercicio` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
---
--- AUTO_INCREMENT de la tabla `entrenadores`
---
+
 ALTER TABLE `entrenadores`
   MODIFY `id_entrenador` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
--- AUTO_INCREMENT de la tabla `historial_membresias`
---
+
 ALTER TABLE `historial_membresias`
   MODIFY `id_historial` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
---
--- AUTO_INCREMENT de la tabla `horarios_clases`
---
 ALTER TABLE `horarios_clases`
   MODIFY `id_horario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
---
--- AUTO_INCREMENT de la tabla `incidencias`
---
+
 ALTER TABLE `incidencias`
   MODIFY `id_incidencia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
---
--- AUTO_INCREMENT de la tabla `membresias`
---
 ALTER TABLE `membresias`
   MODIFY `id_membresia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
---
--- AUTO_INCREMENT de la tabla `metodos_pago`
---
 ALTER TABLE `metodos_pago`
   MODIFY `id_metodo_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
---
--- AUTO_INCREMENT de la tabla `pagos`
---
 ALTER TABLE `pagos`
   MODIFY `id_pago` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
---
--- AUTO_INCREMENT de la tabla `planes`
---
+
 ALTER TABLE `planes`
   MODIFY `id_plan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT de la tabla `reservas_clases`
---
+
 ALTER TABLE `reservas_clases`
   MODIFY `id_reserva` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
---
--- AUTO_INCREMENT de la tabla `roles`
---
+
 ALTER TABLE `roles`
   MODIFY `id_rol` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT de la tabla `rutinas`
---
+
 ALTER TABLE `rutinas`
   MODIFY `id_rutina` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
---
--- AUTO_INCREMENT de la tabla `rutina_ejercicios`
---
+
 ALTER TABLE `rutina_ejercicios`
   MODIFY `id_rutina_ejercicio` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
---
--- AUTO_INCREMENT de la tabla `sedes`
---
+
 ALTER TABLE `sedes`
   MODIFY `id_sede` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT de la tabla `usuarios_internos`
---
 ALTER TABLE `usuarios_internos`
   MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- Restricciones para tablas volcadas
---
 
---
--- Filtros para la tabla `asistencias`
---
 ALTER TABLE `asistencias`
   ADD CONSTRAINT `fk_asistencias_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_asistencias_membresia` FOREIGN KEY (`id_membresia`) REFERENCES `membresias` (`id_membresia`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_asistencias_sede` FOREIGN KEY (`id_sede`) REFERENCES `sedes` (`id_sede`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_asistencias_usuario` FOREIGN KEY (`registrado_por`) REFERENCES `usuarios_internos` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `auditoria`
---
 ALTER TABLE `auditoria`
   ADD CONSTRAINT `fk_auditoria_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios_internos` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `contactos_emergencia`
---
+
 ALTER TABLE `contactos_emergencia`
   ADD CONSTRAINT `fk_contactos_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `devoluciones`
---
 ALTER TABLE `devoluciones`
   ADD CONSTRAINT `fk_dev_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_dev_pago` FOREIGN KEY (`id_pago`) REFERENCES `pagos` (`id_pago`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_dev_usuario` FOREIGN KEY (`procesado_por`) REFERENCES `usuarios_internos` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `historial_membresias`
---
+
 ALTER TABLE `historial_membresias`
   ADD CONSTRAINT `fk_hm_membresia` FOREIGN KEY (`id_membresia`) REFERENCES `membresias` (`id_membresia`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_hm_usuario` FOREIGN KEY (`cambiado_por`) REFERENCES `usuarios_internos` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `horarios_clases`
---
+
 ALTER TABLE `horarios_clases`
   ADD CONSTRAINT `fk_horarios_clase` FOREIGN KEY (`id_clase`) REFERENCES `clases` (`id_clase`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_horarios_entrenador` FOREIGN KEY (`id_entrenador`) REFERENCES `entrenadores` (`id_entrenador`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_horarios_sede` FOREIGN KEY (`id_sede`) REFERENCES `sedes` (`id_sede`) ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `incidencias`
---
 ALTER TABLE `incidencias`
   ADD CONSTRAINT `fk_inc_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_inc_usuario` FOREIGN KEY (`resuelto_por`) REFERENCES `usuarios_internos` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `membresias`
---
+
 ALTER TABLE `membresias`
   ADD CONSTRAINT `fk_membresias_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_membresias_plan` FOREIGN KEY (`id_plan`) REFERENCES `planes` (`id_plan`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_membresias_sede` FOREIGN KEY (`id_sede`) REFERENCES `sedes` (`id_sede`) ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `pagos`
---
+
 ALTER TABLE `pagos`
   ADD CONSTRAINT `fk_pagos_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pagos_membresia` FOREIGN KEY (`id_membresia`) REFERENCES `membresias` (`id_membresia`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -1453,30 +1142,21 @@ ALTER TABLE `pagos`
   ADD CONSTRAINT `fk_pagos_sede` FOREIGN KEY (`id_sede`) REFERENCES `sedes` (`id_sede`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pagos_usuario` FOREIGN KEY (`registrado_por`) REFERENCES `usuarios_internos` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `reservas_clases`
---
+
 ALTER TABLE `reservas_clases`
   ADD CONSTRAINT `fk_reservas_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_reservas_horario` FOREIGN KEY (`id_horario`) REFERENCES `horarios_clases` (`id_horario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `rutinas`
---
+
 ALTER TABLE `rutinas`
   ADD CONSTRAINT `fk_rutinas_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_rutinas_entrenador` FOREIGN KEY (`id_entrenador`) REFERENCES `entrenadores` (`id_entrenador`) ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `rutina_ejercicios`
---
+
 ALTER TABLE `rutina_ejercicios`
   ADD CONSTRAINT `fk_re_ejercicio` FOREIGN KEY (`id_ejercicio`) REFERENCES `ejercicios` (`id_ejercicio`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_re_rutina` FOREIGN KEY (`id_rutina`) REFERENCES `rutinas` (`id_rutina`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `usuarios_roles`
---
 ALTER TABLE `usuarios_roles`
   ADD CONSTRAINT `fk_ur_rol` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_ur_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios_internos` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
